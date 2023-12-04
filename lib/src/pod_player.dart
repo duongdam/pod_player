@@ -200,7 +200,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
 
                 return Center(
                   child: SizedBox(
-                    height: _frameAspectRatio < 1 ? height * 0.45 : null,
+                    height: _frameAspectRatio < 1 ? height * 0.43 : null,
                     child: AspectRatio(
                       aspectRatio: _frameAspectRatio,
                       child: podCtr.videoCtr?.value.isInitialized ?? false
