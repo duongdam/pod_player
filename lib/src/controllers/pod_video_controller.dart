@@ -168,8 +168,8 @@ class _PodVideoController extends _PodUiController {
         await Future.wait([
           SystemChrome.setPreferredOrientations(
             [
-              if (!kIsWeb) DeviceOrientation.landscapeLeft,
-              DeviceOrientation.landscapeRight,
+              DeviceOrientation.portraitUp,
+              DeviceOrientation.portraitDown,
             ],
           ),
           SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky),
