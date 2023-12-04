@@ -186,7 +186,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
             : widget.frameAspectRatio;
         return Center(
           child: ColoredBox(
-            color: widget.backgroundColor ?? Colors.black,
+            color: widget.backgroundColor ?? Colors.transparent,
             child: GetBuilder<PodGetXVideoController>(
               tag: widget.controller.getTag,
               id: 'errorState',
@@ -196,11 +196,18 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
                   return widget.onVideoError?.call() ?? videoErrorWidget;
                 }
 
-                return AspectRatio(
-                  aspectRatio: _frameAspectRatio,
-                  child: podCtr.videoCtr?.value.isInitialized ?? false
-                      ? _buildPlayer()
-                      : Center(child: circularProgressIndicator),
+                final height = MediaQuery.of(context).size.height;
+
+                return Center(
+                  child: SizedBox(
+                    height: _frameAspectRatio < 1 ? height * 0.45 : null,
+                    child: AspectRatio(
+                      aspectRatio: _frameAspectRatio,
+                      child: podCtr.videoCtr?.value.isInitialized ?? false
+                          ? _buildPlayer()
+                          : Center(child: circularProgressIndicator),
+                    ),
+                  ),
                 );
               },
             ),
