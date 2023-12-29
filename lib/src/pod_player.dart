@@ -181,9 +181,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
     return GetBuilder<PodGetXVideoController>(
       tag: widget.controller.getTag,
       builder: (_) {
-        _frameAspectRatio = widget.matchFrameAspectRatioToVideo
-            ? _podCtr.videoCtr?.value.aspectRatio ?? widget.frameAspectRatio
-            : widget.frameAspectRatio;
+        _frameAspectRatio = widget.matchFrameAspectRatioToVideo ? _podCtr.videoCtr?.value.aspectRatio ?? widget.frameAspectRatio : widget.frameAspectRatio;
         return Center(
           child: ColoredBox(
             color: widget.backgroundColor ?? Colors.transparent,
@@ -195,12 +193,11 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
                 if (podCtr.podVideoState == PodVideoState.error) {
                   return widget.onVideoError?.call() ?? videoErrorWidget;
                 }
-
                 final height = MediaQuery.of(context).size.height;
 
                 return Center(
                   child: SizedBox(
-                    height: _frameAspectRatio < 1 ? height * 0.43 : null,
+                    height: _frameAspectRatio < 1 ? height * 0.5 : null,
                     child: AspectRatio(
                       aspectRatio: _frameAspectRatio,
                       child: podCtr.videoCtr?.value.isInitialized ?? false
